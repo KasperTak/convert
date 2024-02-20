@@ -38,10 +38,28 @@ AOW_leeftijd = 68
 
 with tab1:
     column1, column2, column3 = st.columns(3)
-    VOOR_AOW = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
-    NA_AOW = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
-    annuiteitentabel = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
-    studieschuldtabel = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
+    from openpyxl import load_workbook
+    wb = load_workbook("Financieringspercentages_Annuiteitenfactor.xlsx")
+    sheet_1 = wb['Voor AOW']
+    sheet_2 = wb['Na AOW']
+    sheet_3 = wb['Annuiteitenfactor']
+    sheet_4 = wb['Studieschuld']
+
+    data_1 = sheet_1.values
+    data_2 = sheet_2.values
+    data_3 = sheet_3.values
+    data_4 = sheet_4.values
+
+    columns_1 = next(data_1)[0:]
+    columns_2 = next(data_2)[0:]
+    columns_3 = next(data_3)[0:]
+    columns_4 = next(data_4)[0:]
+
+    VOOR_AOW = pd.DataFrame(data_1,columns=columns_1)
+    NA_AOW = pd.DataFrame(data_2,columns=columns_2)
+    annuiteitentabel = pd.DataFrame(data_3,columns=columns_3)
+    studieschuldtabel = pd.DataFrame(data_4,columns=columns_4)
+    
     studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
     
     with column1:
