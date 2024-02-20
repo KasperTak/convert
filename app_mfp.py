@@ -61,6 +61,7 @@ with tab1:
     studieschuldtabel = pd.DataFrame(data_4,columns=columns_4)
     
     studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
+    VOOR_AOW['toetsinkomen'] = VOOR_AOW['toetsinkomen'].str.replace('"', '').str.replace(',', '').astype(int)
     st.write(VOOR_AOW)
     
     with column1:
