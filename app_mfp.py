@@ -39,13 +39,13 @@ AOW_leeftijd = 68
 with tab1:
     column1, column2, column3 = st.columns(3)
     from openpyxl import load_workbook
-    wb = load_workbook("Financieringspercentages_Annuiteitenfactor.xlsx")
+    wb = load_workbook("Financieringspercentages_Annuiteitenfactor.xlsx",data_only=True)
     sheet_1 = wb['Voor AOW']
     sheet_2 = wb['Na AOW']
     sheet_3 = wb['Annuiteitenfactor']
     sheet_4 = wb['Studieschuld']
 
-    data_1 = sheet_1
+    data_1 = sheet_1.values
     data_2 = sheet_2.values
     data_3 = sheet_3.values
     data_4 = sheet_4.values
