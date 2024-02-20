@@ -45,7 +45,7 @@ with tab1:
     sheet_3 = wb['Annuiteitenfactor']
     sheet_4 = wb['Studieschuld']
 
-    data_1 = sheet_1.values
+    data_1 = sheet_1
     data_2 = sheet_2.values
     data_3 = sheet_3.values
     data_4 = sheet_4.values
